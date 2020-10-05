@@ -1,0 +1,151 @@
+---
+title: "Illustrating Classifiers - Banking Data"
+output: 
+  html_document:
+      toc: yes
+      toc_float: yes
+      code_folding: hide
+---
+
+This case comes from the UCL Machine Learning Repository, and is called the [Bank Marketing Data Set](https://archive.ics.uci.edu/ml/datasets/bank+marketing).
+
+The data is related with direct marketing campaigns of a Portuguese banking institution. The marketing campaigns were based on phone calls. Often, more than one contact to the same client was required, in order to access if the product (bank term deposit) would be ('yes') or not ('no') bought.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, warning = FALSE, message = FALSE}
+library(tidyverse)
+library(caret)
+```
+
+
+```{r}
+# Helper function to print the confusion matrix and other performance metrics of the models.
+printPerformance = function(pred, actual, positive="Yes") {
+  print(caret::confusionMatrix(data=pred, reference=actual, positive=positive, dnn=c("Predicted", "Actual")))
+}
+```
+
+
+# Read in the data
+
+```{r}
+df <- read_csv("C:/Users/st50/Documents/sandbox/data/bank-additional/bank-additional-full.csv")
+df = df %>% 
+  dplyr::rename(bought=y) %>%
+  mutate_if(is.character, as.factor)
+head(df)
+summary(df)
+```
+# Cleaning and Preprocessing
+
+```{r}
+set.seed(123) # Set the seed to make it reproducible
+# Downsample
+df = caret::downSample(df, df$bought)
+df$Class = NULL # Don't need it
+str(df)
+head(df)
+table(df$bought)
+# df %>% head(n=30) %>% write.csv("out/bank-sample.csv")
+```
+
+# Splitting the Data
+
+```{r}
+set.seed(123) # Set the seed to make it reproducible
+
+train.index <- createDataPartition(df$bought, p = .8, list = FALSE)
+train <- df[ train.index,]
+test  <- df[-train.index,]
+
+actual = test$bought
+formula = bought ~ .
+positive = "yes"
+```
+
+# Decision Tree
+
+```{r, warning = FALSE}
+library(rpart)
+library(rpart.plot)
+
+set.seed(123)
+
+tree <- rpart(bought ~ ., method="class", data=train)
+rpart.plot(tree, extra=2, type=2)
+
+pred = predict(tree, test, type="class") 
+confusionMatrix(data=pred, reference=test$bought, 
+                positive=positive, 
+                dnn=c("Predicted", "Actual"))
+```
+
+# Naive Bayes
+
+```{r, warning = FALSE}
+library(e1071)
+set.seed(123)
+
+nb_fit = naiveBayes(bought ~ ., data=train)
+nb_fit
+
+pred = predict(nb_fit, test, type="class") 
+confusionMatrix(data=pred, reference=test$bought, 
+                positive=positive, 
+                dnn=c("Predicted", "Actual"))
+```
+
+# KNN
+
+```{r, warning = FALSE}
+library(kknn)
+set.seed(123)
+
+kknn_fit = train.kknn(bought ~ ., train, kmax=7)
+summary(kknn_fit)
+
+pred = predict(kknn_fit, test)
+confusionMatrix(data=pred, reference=test$bought, 
+                positive=positive, 
+                dnn=c("Predicted", "Actual"))
+```
+
+# SVM
+
+```{r, warning = FALSE}
+set.seed(123)
+
+library(e1071)
+svm_fit <- svm(bought ~ ., data = train)
+svm_fit
+summary(svm_fit)
+
+
+pred = predict(svm_fit, test) 
+confusionMatrix(data=pred, reference=test$bought, 
+                positive=positive, 
+                dnn=c("Predicted", "Actual"))
+```
+
+
+# NN
+
+```{r, warning = FALSE}
+set.seed(123)
+
+library(nnet)
+nnet_fit <- nnet(bought ~ ., data=train, size=5)
+summary(nnet_fit)
+
+
+library(gamlss.add)
+plot(nnet_fit, cex.val = 0.5, max.sp = TRUE)
+
+pred = ifelse(predict(nnet_fit, test) > 0.5, "yes", "no")
+confusionMatrix(data=pred, reference=test$bought, 
+                positive=positive, 
+                dnn=c("Predicted", "Actual"))
+```

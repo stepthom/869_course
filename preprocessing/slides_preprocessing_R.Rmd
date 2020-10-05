@@ -1,0 +1,388 @@
+---
+title: "Data and code for preprocessing slides"
+author: "Dr. Stephen W. Thomas, Queen's University"
+output:
+  html_document:
+    df_print: paged
+    toc: no
+    toc_depth: '2'
+  pdf_document:
+    highlight: pygments
+    number_sections: yes
+    toc: no
+    toc_depth: '2'
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE, fig.align='center', error=TRUE)
+```
+
+
+```{r}
+library(tidyr)
+library(dplyr)
+library(readr)
+library(tm)
+library(qdap)
+library(ngram)
+library(knitr)
+library(kableExtra)
+```
+
+
+
+# Case Normalization
+
+Case folding:
+
+```{r}
+base::tolower("Hi, my name is Steve.")
+base::tolower("I work at the U.N. in NYC in the USA.")
+```
+
+No support for truecasing (that I know of).
+
+
+# Tokenization
+
+```{r}
+#library(devtools)
+#install_github("ropensci/tokenizers")
+```
+
+```{r}
+library(tokenizers)
+tokenizers::tokenize_words("Hi, my name is Steve.", lowercase=F)
+
+tokenizers::tokenize_words("Let's go to the U.N. in NYC!!", lowercase=F)
+
+tokenizers::tokenize_words("The ever-popular San Fransisco love letter arrived on March 11, 2019.", lowercase=F)
+
+tokenizers::tokenize_words("stephen.thomas@queensu.ca", lowercase=F)
+
+tokenizers::tokenize_words("(613) 453-6162", lowercase=F)
+```
+
+
+
+# N-Grams
+
+```{r}
+library(ngram)
+ng = ngram::ngram("Hey there, I'm awesome.", n=2)
+print(ng, output="full")
+```
+
+
+
+# Removing Characters and Numbers
+
+```{r}
+library(tm)
+tm::removePunctuation("Hey! Let's go to the bar...")
+
+s1 <- "Ábcdêãçoàúü"
+base::iconv(s1, to = "ASCII//TRANSLIT")
+
+tm::removeNumbers("There are only 4 classes left.")
+```
+
+# Regular Expressions
+
+```{r}
+s1 = "Alejandrina has a small store in her house where she sells basic products. Translated from Spanish by Jennifer Day, Kiva Volunteer."
+base::gsub("Translated[^\\.]+\\.", " ", s1, ignore.case=TRUE)
+
+s2 = "Nancy works as a saleswoman, her main product being used clothing.Translated from Spanish by Kiva Volunteer, Kristin Connor."
+base::gsub("Translated[^\\.]+\\.", " ", s2, ignore.case=TRUE)
+
+s3 = "Marjorie sells lunch to companies and construction workers. Translated by Ramn F. Kolb."
+base::gsub("Translated[^\\.]+\\.", " ", s3, ignore.case=TRUE)
+```
+
+
+# Stemming
+
+```{r}
+library(qdap)
+qdap::stemmer("We are writing code like hackers.", capitalize = FALSE)
+```
+
+# Lemmatization
+
+Can use textstem::lemmatize_words or koRpus::treetag
+
+
+```{r}
+library(textstem)
+library(SnowballC)
+
+words = c('caresses', 'flies', 'dies', 'mules', 'denied',
+            'died', 'agreed', 'owned', 'humbled', 'sized',
+            'meeting', 'stating', 'itemization',
+            'sensational', 'traditional', 'reference', 'colonizer',
+            'plotted', 'generously', 'crying')
+
+res = data.frame(Orig = words, 
+                 Porter = textstem::stem_words(words, language="porter"),
+                 Snowball = SnowballC::wordStem(words),
+                 Lemma = lemmatize_words(words))
+res %>% kable()
+```
+
+```{r, eval=F}
+# Not working on my machine right now; set eval to false
+library(koRpus)
+tagged.results <- treetag(c("run", "ran", "running"), treetagger="manual", format="obj",
+                      TT.tknz=FALSE , lang="en",
+                      TT.options=list(path="./TreeTagger", preset="en"))
+tagged.results@TT.res
+```
+
+# Spell Checking
+
+Hunspell is the spell checker library used by LibreOffice, OpenOffice, Mozilla Firefox, Google Chrome, Mac OS-X, InDesign, Opera, RStudio and many others.
+
+```{r}
+library(hunspell)
+hunspell_check(c("beer", "wiskey", "wine"))
+hunspell_suggest("wiskey")
+```
+
+```{r}
+library(qdap)
+qdap::check_spelling("This is not spelld correcly.")
+```
+
+
+# Stopping
+
+```{r}
+library(qdap)
+qdap::rm_stop("My name is Steve, and I am a good chef.", stopwords = qdapDictionaries::Top200Words)
+sort(qdapDictionaries::Top200Words)
+```
+
+
+# Removing Rare Words
+
+```{r}
+library(tm)
+myText <- c("the quick brown furry fox jumped over a second furry brown fox",
+              "the sparse brown furry matrix",
+              "the quick matrix")
+
+myVCorpus <- VCorpus(VectorSource(myText))
+myTdm <- DocumentTermMatrix(myVCorpus)
+as.matrix(myTdm)
+as.matrix(removeSparseTerms(myTdm, .01))
+as.matrix(removeSparseTerms(myTdm, .99))
+as.matrix(removeSparseTerms(myTdm, .5))
+```
+
+```{r}
+library(quanteda)
+myText <- c("the quick brown furry fox jumped over a second furry brown fox",
+              "the sparse brown furry matrix",
+              "the quick matrix")
+myDfm <- dfm(myText, verbose = FALSE)
+docfreq(myDfm)
+dfm_trim(myDfm, min_count = 2)
+```
+
+# All in One
+
+With textmineR:
+
+```{r}
+library(textmineR)
+
+df = data.frame(ID = 1:3, 
+                Text=c("My dog ate my homework.", 
+                        "The cat ate my sandwich.", 
+                        "A dolphin ate the homework and the sandwich."))
+
+dtm <- textmineR::CreateDtm(doc_vec = df$Text,
+                 doc_names = df$ID, 
+                 ngram_window = c(1, 2), 
+                 stopword_vec = c(tm::stopwords("english"), 
+                                  tm::stopwords("french"), 
+                                  tm::stopwords("spanish")), 
+                 lower = TRUE, 
+                 remove_punctuation = TRUE, 
+                 remove_numbers = TRUE,
+                 verbose = FALSE,
+                 stem_lemma_function = function(x) SnowballC::wordStem(x, "porter"))
+
+as.data.frame(as.matrix(dtm), stringsAsFactors=False)
+```
+
+With TM:
+
+```{r}
+library(tm)
+
+myText <- c("the quick brown furry fox jumped over a second furry brown fox",
+              "the sparse brown furry matrix",
+              "the quick matrix")
+
+myVCorpus <- VCorpus(VectorSource(myText))
+
+myVCorpus <- tm_map(myVCorpus, content_transformer(tolower))
+myVCorpus <- tm_map(myVCorpus, content_transformer(removePunctuation))
+myVCorpus <- tm_map(myVCorpus, content_transformer(removeNumbers))
+myVCorpus <- tm_map(myVCorpus, content_transformer(removeWords), stopwords("english"))
+myVCorpus <- tm_map(myVCorpus, content_transformer(stripWhitespace))
+
+dtm <- DocumentTermMatrix(myVCorpus)
+as.matrix(dtm)
+dtm <- removeSparseTerms(dtm, 0.5)
+as.matrix(dtm)
+```
+
+# R Data Types and Formats
+
+```{r}
+df = data.frame(ID = 1:3, 
+                Text=c("My dog ate my homework.", 
+                        "The cat ate my sandwich.", 
+                        "A dolphin ate the homework and the sandwich."), stringsAsFactors = FALSE)
+```
+
+
+
+```{r}
+library(tm)
+myVCorpus <- VCorpus(VectorSource(myText))
+dtm <- DocumentTermMatrix(myVCorpus)
+str(dtm)
+dim(dtm)
+```
+
+
+```{r}
+library(textmineR)
+dtm <- textmineR::CreateDtm(doc_vec = df$Text, doc_names = df$ID)
+str(dtm)
+dim(dtm)
+```
+
+
+```{r}
+library(text2vec) 
+prep_fun = tolower
+tok_fun = word_tokenizer
+
+it_train = itoken(df$Text, 
+             preprocessor = prep_fun, 
+             tokenizer = tok_fun, 
+             ids = df$ID, 
+             progressbar = FALSE)
+vocab = create_vocabulary(it_train)
+vocab
+str(vocab)
+dim(vocab)
+
+vectorizer = vocab_vectorizer(vocab)
+dtm = create_dtm(it_train, vectorizer)
+str(dtm)
+dim(dtm)
+as.data.frame(as.matrix(dtm))
+
+
+h_vectorizer = hash_vectorizer(hash_size = 2 ^ 5, ngram = c(1L, 2L))
+dtm_h = create_dtm(it_train, h_vectorizer)
+str(dtm_h)
+dim(dtm_h)
+as.data.frame(as.matrix(dtm_h))
+```
+
+
+```{r}
+library(tidytext)
+tidy <- df %>% 
+  unnest_tokens(word, Text)
+
+str(tidy)
+dim(tidy)
+```
+
+# Fuzzy Matching
+
+Good research article: https://journal.r-project.org/archive/2014-1/loo.pdf
+
+Also see fuzzywuzzyR.
+
+```{r}
+library(fuzzyjoin)
+library(dplyr)
+
+choices <- data.frame(
+  name = c('Queen\'s University', 'University of Toronto', 
+           'McGill University', 'University Of Waterloo'))
+
+typos <- data.frame(name = c('Queens University', 'Queen\'s', 'Queens Univrsity',
+                         'U of T', 'Toronto', 'Rotman',
+                         'Mcgill', 'McGill U.',
+                         'Waterloo', 'Waterloop University'))
+
+stringdist_join(typos, choices, by = "name", mode = "left", ignore_case = TRUE, 
+                method = "jw", max_dist = 99, distance_col = "dist") %>%
+  group_by(name.x) %>%
+  top_n(1, -dist) 
+```
+
+# Vectorization
+
+Use text2vec to compare BOW to feature hashing embeddings on Kiva Dataset
+
+```{r}
+df <- read_csv("data/kiva.csv")
+df = df %>%
+  rename(story = en) %>%
+  mutate(story = gsub("<.*?>", "", story)) %>% # Remove HTML tags
+  mutate(story = gsub("\\d", "", story)) # Remove digits
+```
+
+```{r}
+library(textclean)
+library(tidyverse)
+library(text2vec) 
+
+
+it_train = itoken(df$story, 
+             preprocessor = tolower, 
+             tokenizer = word_tokenizer, 
+             ids = df$id, 
+             progressbar = FALSE)
+vocab = create_vocabulary(it_train, ngram = c(1L, 3L))
+pruned_vocab = prune_vocabulary(vocab, 
+                                 term_count_min = 10, 
+                                 doc_proportion_max = 0.5,
+                                 doc_proportion_min = 0.05)
+
+# define tfidf model
+tfidf = TfIdf$new()
+
+vectorizer = vocab_vectorizer(pruned_vocab)
+dtm = create_dtm(it_train, vectorizer)
+dtm = fit_transform(dtm, tfidf)
+dim(dtm)
+
+# rf is picky about column names like "if" or "while"
+colnames(dtm) <- paste0(("bow_"), colnames(dtm))
+
+df2 = cbind(df, as.matrix(dtm))
+head(df2)
+```
+
+Feature hashing:
+
+```{r}
+h_vectorizer = hash_vectorizer(hash_size = 2 ^ 8, ngram = c(1L, 2L))
+dtm_h = as.data.frame(as.matrix(create_dtm(it_train, h_vectorizer)))
+dim(dtm_h)
+
+df3 = cbind(df, dtm_h)
+head(df3)
+```
+

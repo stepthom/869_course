@@ -1,0 +1,58 @@
+---
+title: "Data and code for sSNA slides"
+author: "Dr. Stephen W. Thomas, Queen's University"
+output:
+  html_document:
+    df_print: paged
+    toc: no
+    toc_depth: '2'
+  pdf_document:
+    highlight: pygments
+    number_sections: yes
+    toc: no
+    toc_depth: '2'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE, fig.align='center', error=TRUE)
+```
+
+
+```{r}
+library(igraph)
+```
+
+```{r}
+g4 <- graph( c("John", "Jim", "Jim", "Jack", "Jim", "Jack", "John", "John"), 
+
+             isolates=c("Jesse", "Janis", "Jennifer", "Justin") )  
+
+# In named graphs we can specify isolates by providing a list of their names.
+
+
+
+plot(g4, edge.arrow.size=.5, vertex.color="gold", vertex.size=15, 
+
+     vertex.frame.color="gray", vertex.label.color="black", 
+
+     vertex.label.cex=0.8, vertex.label.dist=2, edge.curved=0.2) 
+```
+
+```{r}
+set.seed(123)
+net <- graph("Zachary") # the Zachary carate club
+```
+
+```{r}
+l <- layout.fructerman.reingold.grid(net)
+l <- norm_coords(l, ymin=-1, ymax=1, xmin=-1, xmax=1)
+plot(net, vertex.size=20, rescale=F, xlim = c(-3, 3), ylim=c(-3, 3), layout=l*1.0)
+
+l <- layout.fructerman.reingold.grid(net)
+plot(net, layout=l)
+```
+
+```{r}
+eigen_centrality(net, directed=T, weights=NA)
+betweenness(net, directed=T, weights=NA)
+```
