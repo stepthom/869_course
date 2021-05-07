@@ -63,7 +63,7 @@ Resources for MMA, MMAI, and GMMA 869
     <td valign="top">Numeric: 2/td>
     <td valign="top"><code>Bought</code><br><code>0</code>: 50%<br><code>1</code>: 50%</td>
   </tr>
-    <tr>
+  <tr>
     <td valign="top"><a href="https://raw.githubusercontent.com/stepthom/869_course/main/data/islr_credit.csv">ISLR Student Credit Default</a></td>
     <td valign="top"><a href="https://rdrr.io/cran/ISLR/man/Default.html">ISLR</a></td>
     <td valign="top">10000</td>
@@ -83,6 +83,13 @@ Resources for MMA, MMAI, and GMMA 869
     <td valign="top">9835</td>
     <td valign="top">Binary: 169</td>
     <td valign="top">N/A</td>
+  </tr>
+  <tr>
+    <td valign="top"><a href="https://raw.githubusercontent.com/stepthom/869_course/main/data/OJ.csv">Orange Juice Purchase</a></td>
+    <td valign="top"><a href="https://rdrr.io/cran/ISLR/man/OJ.html">ISLR</a></td>
+    <td valign="top">1070</td>
+    <td valign="top">ID: 1<br>Numeric: 17</td>
+    <td valign="top"><code>Purchase</code><br><code>CH</code>: 61%<br><code>MM</code>: 39%</td>
   </tr>
 </tbody>
 </table>
