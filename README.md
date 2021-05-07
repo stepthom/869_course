@@ -31,15 +31,15 @@ Resources for MMA, MMAI, and GMMA 869
     <tr>
     <td valign="top"><a href="https://raw.githubusercontent.com/stepthom/869_course/main/data/HR_comma_sep.csv">HR</a></td>
     <td valign="top"><a href="https://archive.ics.uci.edu/ml/datasets/statlog+(german+credit+data)">UCI</a></td>
-    <td valign="top">1000</td>
-    <td valign="top">ID: 0<br>Numeric: 61<br>Binary: <br>Categorical: 0</td>
+    <td valign="top">14999</td>
+    <td valign="top">ID: 0<br>Numeric: 7<br>Categorical: 2</td>
     <td valign="top">left (0 = 76%; 1 = 24%)</td>
   </tr>
    <tr>
     <td valign="top"><a href="https://raw.githubusercontent.com/stepthom/869_course/main/data/adult.csv">Adult (1994 USA Census)</a></td>
     <td valign="top"><a href="https://archive.ics.uci.edu/ml/datasets/adult">UCI</a></td>
     <td valign="top">32561</td>
-    <td valign="top">ID: 0<br>Numeric: 6<br>Binary: 0<br>Categorical: 8</td>
+    <td valign="top">ID: 0<br>Numeric: 6<br>Categorical: 8</td>
     <td valign="top">high_salary (0 = 76%; 1 = 24%)</td>
   </tr>
   <tr>
@@ -53,28 +53,28 @@ Resources for MMA, MMAI, and GMMA 869
     <td valign="top"><a href="">TODO</a></td>
     <td valign="top"><a href="">TODO</a></td>
     <td valign="top">TODO</td>
-    <td valign="top">ID: X<br>Numeric: X<br>Binary: X<br>Categorical: X</td>
+    <td valign="top">ID: X<br>Numeric: X<br>Categorical: X</td>
     <td valign="top">TODO (0 = X%; 1 = X%)</td>
   </tr>
     <tr>
     <td valign="top"><a href="">TODO</a></td>
     <td valign="top"><a href="">TODO</a></td>
     <td valign="top">TODO</td>
-    <td valign="top">ID: X<br>Numeric: X<br>Binary: X<br>Categorical: X</td>
+    <td valign="top">ID: X<br>Numeric: X<br>Categorical: X</td>
     <td valign="top">TODO (0 = X%; 1 = X%)</td>
   </tr>
     <tr>
     <td valign="top"><a href="">TODO</a></td>
     <td valign="top"><a href="">TODO</a></td>
     <td valign="top">TODO</td>
-    <td valign="top">ID: X<br>Numeric: X<br>Binary: X<br>Categorical: X</td>
+    <td valign="top">ID: X<br>Numeric: X<br>Categorical: X</td>
     <td valign="top">TODO (0 = X%; 1 = X%)</td>
   </tr>
     <tr>
     <td valign="top"><a href="">TODO</a></td>
     <td valign="top"><a href="">TODO</a></td>
     <td valign="top">TODO</td>
-    <td valign="top">ID: X<br>Numeric: X<br>Binary: X<br>Categorical: X</td>
+    <td valign="top">ID: X<br>Numeric: X<br>Categorical: X</td>
     <td valign="top">TODO (0 = X%; 1 = X%)</td>
   </tr>
 </tbody>
