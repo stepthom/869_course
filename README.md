@@ -43,11 +43,11 @@ Resources for MMA, MMAI, and GMMA 869
     <td valign="top">high_salary (0 = 76%; 1 = 24%)</td>
   </tr>
   <tr>
-    <td valign="top"><a href="">TODO</a></td>
-    <td valign="top"><a href="">TODO</a></td>
-    <td valign="top">TODO</td>
-    <td valign="top">ID: X<br>Numeric: X<br>Binary: X<br>Categorical: X</td>
-    <td valign="top">TODO (0 = X%; 1 = X%)</td>
+    <td valign="top"><a href="https://raw.githubusercontent.com/stepthom/869_course/main/data/bank.csv">Portugese Bank Marketing</a></td>
+    <td valign="top"><a href="https://archive.ics.uci.edu/ml/datasets/bank+marketing">UCI</a></td>
+    <td valign="top">4521</td>
+    <td valign="top">ID: 0<br>Numeric: 7<br>Categorical: 9</td>
+    <td valign="top">y (no= 88%; yes = 12%)</td>
   </tr>
     <tr>
     <td valign="top"><a href="">TODO</a></td>
