@@ -18,22 +18,22 @@ Resources for MMA, MMAI, and GMMA 869
     <td valign="top"><a href="https://raw.githubusercontent.com/stepthom/869_course/main/data/diabetes_orig.csv">diabetes</a></td>
     <td valign="top"><a href="https://www.kaggle.com/uciml/pima-indians-diabetes-database">Kaggle</a></td>
     <td valign="top">769</td>
-    <td valign="top">ID: 1<br>Numeric: 8<br>Categorical: 0</td>
-    <td valign="top">diabetes (0= 65%; 1 = 35%)</td>
+    <td valign="top">ID: 1<br>Numeric: 8</td>
+    <td valign="top"><code>diabetes</code><br><code>0</code>: 65%<br><code>1</code>: 35%</td>
   </tr>
   <tr>
     <td valign="top"><a href="https://raw.githubusercontent.com/stepthom/869_course/main/data/GermanCredit.csv">German Credit</a></td>
     <td valign="top"><a href="https://archive.ics.uci.edu/ml/datasets/statlog+(german+credit+data)">UCI</a></td>
     <td valign="top">1000</td>
-    <td valign="top">ID: 0<br>Numeric: 61<br>Categorical: 0</td>
-    <td valign="top">Class ("Good"= 70%; "Bad" = 35%)</td>
+    <td valign="top">Numeric: 61</td>
+    <td valign="top"><code>Class</code><br><code>Good</code>: 70%<br><code>Bad</code>:35%</td>
   </tr>
     <tr>
     <td valign="top"><a href="https://raw.githubusercontent.com/stepthom/869_course/main/data/HR_comma_sep.csv">HR</a></td>
     <td valign="top"><a href="https://archive.ics.uci.edu/ml/datasets/statlog+(german+credit+data)">UCI</a></td>
     <td valign="top">14999</td>
-    <td valign="top">ID: 0<br>Numeric: 7<br>Categorical: 2</td>
-    <td valign="top">left (0 = 76%; 1 = 24%)</td>
+    <td valign="top">Numeric: 7<br>Categorical: 2</td>
+    <td valign="top"><code>left</code><br><code>0</code>: 76%<br><code>1</code>: 24%</td>
   </tr>
    <tr>
     <td valign="top"><a href="https://raw.githubusercontent.com/stepthom/869_course/main/data/adult.csv">Adult (1994 USA Census)</a></td>
