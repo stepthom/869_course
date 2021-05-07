@@ -50,11 +50,11 @@ Resources for MMA, MMAI, and GMMA 869
     <td valign="top">y (no= 88%; yes = 12%)</td>
   </tr>
     <tr>
-    <td valign="top"><a href="">TODO</a></td>
-    <td valign="top"><a href="">TODO</a></td>
-    <td valign="top">TODO</td>
-    <td valign="top">ID: X<br>Numeric: X<br>Categorical: X</td>
-    <td valign="top">TODO (0 = X%; 1 = X%)</td>
+    <td valign="top"><a href="https://raw.githubusercontent.com/stepthom/869_course/main/data/creditcard_sample.csv">European Credit Card</a></td>
+    <td valign="top"><a href="http://rstudio-pubs-static.s3.amazonaws.com/334864_28050f7860dd4927a596872f0cd52401.html">Przemyslaw Zientala</a></td>
+    <td valign="top">142403</td>
+    <td valign="top">ID: 0<br>Time: 1<br>Numeric: 29<br>Categorical: 0</td>
+    <td valign="top">Class (0 = 99.8%; 1 = 0.2%)</td>
   </tr>
     <tr>
     <td valign="top"><a href="">TODO</a></td>
