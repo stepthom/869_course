@@ -91,6 +91,13 @@ Resources for MMA, MMAI, and GMMA 869
     <td valign="top">ID: 1<br>Numeric: 17</td>
     <td valign="top"><code>Purchase</code><br><code>CH</code>: 61%<br><code>MM</code>: 39%</td>
   </tr>
+     <tr>
+    <td valign="top"><a href="https://raw.githubusercontent.com/stepthom/869_course/main/data/jewelry_customers.csv">Groceries</a></td>
+    <td valign="top">Unknown</td>
+    <td valign="top">505</td>
+    <td valign="top">Numeric: 4</td>
+    <td valign="top">N/A</td>
+  </tr>
 </tbody>
 </table>
 </table>
