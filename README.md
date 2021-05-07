@@ -71,11 +71,18 @@ Resources for MMA, MMAI, and GMMA 869
     <td valign="top">default (No = 97%; Yes = 3%)</td>
   </tr>
     <tr>
-    <td valign="top"><a href="">TODO</a></td>
-    <td valign="top"><a href="">TODO</a></td>
-    <td valign="top">TODO</td>
-    <td valign="top">ID: X<br>Numeric: X<br>Categorical: X</td>
-    <td valign="top">TODO (0 = X%; 1 = X%)</td>
+    <td valign="top"><a href="https://raw.githubusercontent.com/stepthom/869_course/main/data/Mall_Customers.csv">Mall Customers</a></td>
+    <td valign="top"><a href="https://www.kaggle.com/biphili/customer-centricity-k-means">Kaggle</a></td>
+    <td valign="top">200</td>
+    <td valign="top">ID: 1<br>Numeric: 3<br>Categorical: 1</td>
+    <td valign="top">N/A</td>
+  </tr>
+    <tr>
+    <td valign="top"><a href="https://raw.githubusercontent.com/stepthom/869_course/main/data/groceries.csv">Groceries</a></td>
+    <td valign="top"><a href="https://github.com/stedy/Machine-Learning-with-R-datasets/blob/master/groceries.csv">Machine Learning with R</a></td>
+    <td valign="top">9835</td>
+    <td valign="top">ID: 0<br>Binary: 169<br>Categorical: 0</td>
+    <td valign="top">N/A</td>
   </tr>
 </tbody>
 </table>
