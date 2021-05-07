@@ -64,11 +64,11 @@ Resources for MMA, MMAI, and GMMA 869
     <td valign="top">Bought (0 = 50%; 1 = 50%)</td>
   </tr>
     <tr>
-    <td valign="top"><a href="">TODO</a></td>
-    <td valign="top"><a href="">TODO</a></td>
-    <td valign="top">TODO</td>
-    <td valign="top">ID: X<br>Numeric: X<br>Categorical: X</td>
-    <td valign="top">TODO (0 = X%; 1 = X%)</td>
+    <td valign="top"><a href="https://raw.githubusercontent.com/stepthom/869_course/main/data/islr_credit.csv">ISLR Student Credit Default</a></td>
+    <td valign="top"><a href="https://rdrr.io/cran/ISLR/man/Default.html">ISLR</a></td>
+    <td valign="top">10000</td>
+    <td valign="top">ID: 1<br>Numeric: 2<br>Categorical: 1</td>
+    <td valign="top">default (No = 97%; Yes = 3%)</td>
   </tr>
     <tr>
     <td valign="top"><a href="">TODO</a></td>
