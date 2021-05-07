@@ -57,11 +57,11 @@ Resources for MMA, MMAI, and GMMA 869
     <td valign="top">Class (0 = 99.8%; 1 = 0.2%)</td>
   </tr>
     <tr>
-    <td valign="top"><a href="">TODO</a></td>
-    <td valign="top"><a href="">TODO</a></td>
-    <td valign="top">TODO</td>
-    <td valign="top">ID: X<br>Numeric: X<br>Categorical: X</td>
-    <td valign="top">TODO (0 = X%; 1 = X%)</td>
+    <td valign="top"><a href="https://raw.githubusercontent.com/stepthom/869_course/main/data/generated_marketing.csv">Marketing (Synthetic)</a></td>
+    <td valign="top"><a href="https://github.com/stepthom/869_course/blob/main/data/generate_data.ipynb">generate_data.ipynb</a></td>
+    <td valign="top">500</td>
+    <td valign="top">ID: 0<br>Numeric: 2<br>Categorical: 0</td>
+    <td valign="top">Bought (0 = 50%; 1 = 50%)</td>
   </tr>
     <tr>
     <td valign="top"><a href="">TODO</a></td>
