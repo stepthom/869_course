@@ -58,10 +58,17 @@ Resources for MMA, MMAI, and GMMA 869
   </tr>
     <tr>
     <td valign="top"><a href="https://raw.githubusercontent.com/stepthom/869_course/main/data/generated_marketing.csv">Marketing (Synthetic)</a></td>
-    <td valign="top"><a href="https://github.com/stepthom/869_course/blob/main/data/generate_data.ipynb">generate_data.ipynb</a></td>
+    <td valign="top"><a href="https://github.com/stepthom/869_course/blob/main/data/generate_marketing.ipynb">generate_data.ipynb</a></td>
     <td valign="top">500</td>
-    <td valign="top">Numeric: 2/td>
+    <td valign="top">Numeric: 2</td>
     <td valign="top"><code>Bought</code><br><code>0</code>: 50%<br><code>1</code>: 50%</td>
+  </tr>
+  <tr>
+    <td valign="top"><a href="https://raw.githubusercontent.com/stepthom/869_course/main/data/generated_german.csv">German Credit (Synthetic)</a></td>
+    <td valign="top"><a href="https://archive.ics.uci.edu/ml/datasets/bank+marketing">UCI</a></td>
+    <td valign="top">1000</td>
+    <td valign="top">Numeric: 48<br>Categorical: 8</td>
+    <td valign="top"><code>BadCredit</code><br><code>0</code>: 70%<br><code>1</code>: 30%</td>
   </tr>
   <tr>
     <td valign="top"><a href="https://raw.githubusercontent.com/stepthom/869_course/main/data/islr_credit.csv">ISLR Student Credit Default</a></td>
