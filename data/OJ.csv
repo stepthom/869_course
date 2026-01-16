@@ -1,4 +1,4 @@
-"","Purchase","WeekofPurchase","StoreID","PriceCH","PriceMM","DiscCH","DiscMM","SpecialCH","SpecialMM","LoyalCH","SalePriceMM","SalePriceCH","PriceDiff","Store7","PctDiscMM","PctDiscCH","ListPriceDiff","STORE"
+"ID","Purchase","WeekofPurchase","StoreID","PriceCH","PriceMM","DiscCH","DiscMM","SpecialCH","SpecialMM","LoyalCH","SalePriceMM","SalePriceCH","PriceDiff","Store7","PctDiscMM","PctDiscCH","ListPriceDiff","STORE"
 "1","CH",237,1,1.75,1.99,0,0,0,0,0.5,1.99,1.75,0.24,"No",0,0,0.24,1
 "2","CH",239,1,1.75,1.99,0,0.3,0,1,0.6,1.69,1.75,-0.06,"No",0.150754,0,0.24,1
 "3","CH",245,1,1.86,2.09,0.17,0,0,0,0.68,2.09,1.69,0.4,"No",0,0.091398,0.23,1
